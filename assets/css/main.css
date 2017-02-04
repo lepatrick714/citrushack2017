@@ -1322,7 +1322,7 @@ p {
 h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     line-height: 1.5;
-    margin: 0 0 1em 0;
+
 }
 
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
@@ -1579,11 +1579,11 @@ input[type="submit"], input[type="reset"], input[type="button"], button, .button
 }
 
 input[type="submit"]:hover, input[type="reset"]:hover, input[type="button"]:hover, button:hover, .button:hover {
-    background-color: #4aa3df;
+    background-color: #ffaa45;
 }
 
 input[type="submit"]:active, input[type="reset"]:active, input[type="button"]:active, button:active, .button:active {
-    background-color: #258cd1;
+    background-color: #ffaa45;
 }
 
 input[type="submit"].alt, input[type="reset"].alt, input[type="button"].alt, button.alt, .button.alt {
@@ -1994,7 +1994,7 @@ input[type="checkbox"]:focus+label:before, input[type="radio"]:focus+label:befor
     border: 0;
     display: inline-block;
     position: relative;
-    box-shadow: 0px 0px 0px 7px #fff, 0px 0px 0px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 0px 3px #f08404, 0px 0px 0px 8px rgba(0, 0, 0, 0.1);
 }
 
 .image img {
@@ -2007,6 +2007,10 @@ input[type="checkbox"]:focus+label:before, input[type="radio"]:focus+label:befor
 
 .image.left img, .image.right img {
     width: 100%;
+}
+
+.image-box {
+    padding-bottom: 20px;
 }
 
 .image.left {
@@ -2027,6 +2031,10 @@ input[type="checkbox"]:focus+label:before, input[type="radio"]:focus+label:befor
     width: 100%;
 }
 
+.profile-picture {
+    width: 50px;
+}
+
 .image.fit img {
     width: 100%;
 }
@@ -2037,6 +2045,7 @@ input[type="checkbox"]:focus+label:before, input[type="radio"]:focus+label:befor
 
 .image.round img {
     border-radius: 100%;
+    width: 100px;
 }
 
 .image.main {
@@ -2757,9 +2766,9 @@ table.alt tbody tr td {
     border-color: rgba(255, 255, 255, 0.25);
 }
 
-.wrapper.style2 .image {
+/*.wrapper.style2 .image {
     box-shadow: 0px 0px 0px 7px #f08404, 0px 0px 0px 8px rgba(255, 255, 255, 0.25);
-}
+}*/
 
 @media screen and (max-width: 1280px) {
     .wrapper>.inner {
