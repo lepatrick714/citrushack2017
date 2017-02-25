@@ -2045,7 +2045,7 @@ input[type="checkbox"]:focus+label:before, input[type="radio"]:focus+label:befor
 
 .image.round img {
     border-radius: 100%;
-    width: 100px;
+    width: 200px;
 }
 
 .image.main {
