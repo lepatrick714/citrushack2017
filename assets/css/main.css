@@ -2032,7 +2032,7 @@ input[type="checkbox"]:focus+label:before, input[type="radio"]:focus+label:befor
 }
 
 .profile-picture {
-    width: 50px;
+    width: 300px;
 }
 
 .image.fit img {
