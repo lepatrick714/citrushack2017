@@ -1317,8 +1317,17 @@ em, i {
 
 p {
     margin: 0 0 20px 0;
+    font-size: 1.5em;
 }
 
+.answer {
+  font-size: 1.0em;
+  color: #555;
+}
+
+footer div {
+  color: #444;
+}
 h1, h2, h3, h4, h5, h6 {
     /*font-weight: 700;*/
     line-height: 1.5;
@@ -2121,6 +2130,7 @@ ul.icons {
 ul.icons li {
     display: inline-block;
     padding: 0 2em 0 0;
+    color: #444;
 }
 
 ul.icons li:last-child {
@@ -2413,6 +2423,14 @@ table.alt tbody tr td {
     position: relative;
 }
 
+.wrapper p {
+  color: #444;
+}
+
+.wrapper h3 {
+  color: #f09a04;
+  font-weight: bold;
+}
 .wrapper .inner {
     margin: 0 auto;
     width: 80em;
@@ -2435,6 +2453,17 @@ table.alt tbody tr td {
     color: #FFF;
 }
 
+.style1 p {
+  color: #FFF;
+}
+
+.style2 p {
+  color: #FFF;
+}
+
+#team-display {
+  display: none;
+}
 
 .wrapper.style1 input, .wrapper.style1 select, .wrapper.style1 textarea {
     color: #000;
