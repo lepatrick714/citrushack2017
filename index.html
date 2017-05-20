@@ -34,8 +34,10 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script>
-		$(document).ready(function() {
-			$('[data-toggle="tooltip"]').tooltip();
+		$(function() {
+			$('.tooltip-wrapper').tooltip({
+				position: "bottom"
+			});
 		});
 	</script>
 </head>
@@ -47,19 +49,21 @@
 		<div class="inner">
 			<header>
 				<img src="images/logo.png" class="logo">
-				<h1>Citrus Hack 2017</h1>
+				<h1><strong>Citrus Hack 2017</strong></h1>
 				<br>
 				<h2>October 13th to 15th</h2>
-				<p class="slogan">Southern California's Premier Hackathon</p>
+				<p class="slogan">Southern California's Premier Hackathon at UCR</p>
 				<!--<p class="slogan">Winston Chung Hall at UC Riverside</p>-->
-				<p class="slogan">Hello traveler! Applications for Citrus Hack 2017 is now open.</p>
+				<p class="slogan">Hello traveler, the challenge application for Citrus Hack 2017 is now open!</p>
 			</header>
 			<ul class="actions">
 				<li>
 					<a href="https://citrushack1.typeform.com/to/ubOSMJ" class="button">Challenge Application</a>
 				</li>
 				<li>
-					<a href="#" class="button disabled" data-toggle="tooltip" title="Opening soon">Normal Application</a>
+					<div class="tooltip-wrapper disabled" data-title="Opening in August 2017">
+						<a class="button disabled" disabled>Normal Application</a>
+					</div>
 				</li>
 			</ul>
 		</div>
