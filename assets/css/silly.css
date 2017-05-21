@@ -31,19 +31,12 @@ img.logo-ring {
     position: absolute;
 }
 
-#m1 {
-    position: absolute;
-    animation: m1-move 10s infinite;
-    z-index: 10;
-    animation-direction: initial;
-}
 
-@keyframes m1-move {
-    from {
-        transform: translateY(-100%);
-    }
-    to {
-        transform: translateX(200px);
-        transform: translate3d(-1000px, 500px, 0px);
-    }
+#space {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-image: url("../../images/banner-wallpaper.png");
 }
