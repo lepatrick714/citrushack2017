@@ -17,6 +17,7 @@
     /*-webkit-animation:spin 4s linear infinite;*/
     /*-moz-animation:spin 4s linear infinite;*/
     /*animation:spin 15s linear infinite;*/
+-webkit-filter: drop-shadow(0px 0px 50px rgba(238, 131, 34, 1));
 }
 
 .logo-ring {
@@ -24,7 +25,11 @@
     z-index: 1;
 }
 
-img {
+img.logo {
+    position: absolute;
+}
+
+img.logo-ring {
     position: absolute;
 }
 /*@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }*/

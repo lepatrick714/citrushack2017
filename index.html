@@ -55,7 +55,7 @@
     var screenW;
     var stars = [];
     var fps = 24;
-    var numStars = 200;
+    var numStars = 500;
 
     $('document').ready(function() {
 
@@ -75,7 +75,7 @@
       for (var i = 0; i < numStars; i++) {
         var x = Math.round(Math.random() * screenW);
         var y = Math.round(Math.random() * screenH);
-        var length = 1 + (Math.random() * 20);
+        var length = 1 + (Math.random() * screenW / 50);
         // var opacity = Math.random();
         var opacity = 0;
 
@@ -150,19 +150,13 @@
 
       context.beginPath()
       for (var i = 5; i--;) {
-        // context.lineTo(0, this.length);
-        // context.translate(0, this.length);
-        // context.rotate((Math.PI * 2 / 10));
-        // context.lineTo(0, -this.length);
-        // context.translate(0, -this.length);
-        // context.rotate(-(Math.PI * 6 / 10));
         context.arc(this.length, this.length, this.length * 2, 0, 2 * Math.PI);
       }
       context.lineTo(0, this.length);
       context.closePath();
 
       context.fillStyle = "rgba(" + this.red_o + "," + this.green_o + "," + this.blue_o + "," + this.opacity + ")";
-      context.shadowBlur = 10;
+      context.shadowBlur = 100;
       context.shadowColor = "rgba(" + this.red_o + "," + this.green_o + "," + this.blue_o + "," + this.opacity + ")";
       context.fill();
 
