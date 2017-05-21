@@ -14,10 +14,7 @@
 .logo {
     width: 45%;
     z-index: 1;
-    /*-webkit-animation:spin 4s linear infinite;*/
-    /*-moz-animation:spin 4s linear infinite;*/
-    /*animation:spin 15s linear infinite;*/
--webkit-filter: drop-shadow(0px 0px 50px rgba(238, 131, 34, 1));
+    -webkit-filter: drop-shadow(0px 0px 50px rgba(238, 131, 34, 1));
 }
 
 .logo-ring {
@@ -32,6 +29,20 @@ img.logo {
 img.logo-ring {
     position: absolute;
 }
-/*@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }*/
-/*@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }*/
-/*@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }*/
+
+#m1 {
+    position: absolute;
+    animation: m1-move 10s infinite;
+    z-index: 10;
+    animation-direction: initial;
+}
+
+@keyframes m1-move {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateX(200px);
+        transform: translate3d(-1000px, 500px, 0px);
+    }
+}
