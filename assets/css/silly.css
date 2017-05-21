@@ -2,8 +2,9 @@
 
 #logo-wrapper {
     width: 50%;
-    height: 18vw;
+    height: 15vw;
     max-height: 400px;
+    margin-bottom: 10vh;
 
 }
 .space-logo {
