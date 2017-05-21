@@ -2,367 +2,499 @@
 <html>
 
 <head>
-	<title>Citrus Hack 2017</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<link rel="stylesheet" href="assets/css/silly.min.css" />
-	<link rel="stylesheet" href="assets/css/nav.min.css" />
-	<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="assets/css/font-awesome.min.css" />
-	<link rel="stylesheet" href="assets/css/stars.min.css" />
-	<link rel="icon" href="images/logo.ico" type="image/x-icon" />
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Citrus Hack | ACM@UCR's hackathon</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- FB tags -->
-	<meta property="og:title" content="Citrus Hack | The Inland Empire's Premier Hackathon" />
-	<meta property="og:site_name" content="Citrus Hack | The Inland Empire's Premier Hackathon" />
-	<meta property="og:url" content="http://citrushack.com" />
-	<meta property="og:description" content="Citrus Hack is a 36-hour hackathon. A hackathon invites collegiate students to a location to collaborate and innovate. Throughout the 36 hours participants work in teams on a project, attend workshops to learn about new technologies, and network with industry partners."
-	/>
-	<meta property="og:image" content="http://citrushack.com/images/logo.png" />
-	<meta property="fb:app_id" content="544219672384014" />
-	<meta property="og:type" content="website" />
-	<meta property="article:author" content="http://citrushack.com" />
-	<meta property="article:publisher" content="https://www.facebook.com/CitrusHack/" />
-	<!-- SEO tags -->
-	<meta name='description' content="http://citrushack.com/images/logo.png" />
-	<meta name='author' content='John Pham' />
-	<meta name='keywords' content='hackathon,riverside,ucr,citrus,highlanders,programming,cs,cutie,hack,inland empire,california,uc,cutie hack,acm,computer,science,entrepreneurship' />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script>
-		$(function() {
-			$('.tooltip-wrapper').tooltip({
-				position: "bottom"
-			});
-		});
-	</script>
+  <title>Citrus Hack 2017</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/silly.css" />
+  <link rel="stylesheet" href="assets/css/nav.min.css" />
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="assets/css/stars.min.css" />
+  <link rel="icon" href="images/logo.ico" type="image/x-icon" />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Citrus Hack | ACM@UCR's hackathon</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- FB tags -->
+  <meta property="og:title" content="Citrus Hack | The Inland Empire's Premier Hackathon" />
+  <meta property="og:site_name" content="Citrus Hack | The Inland Empire's Premier Hackathon" />
+  <meta property="og:url" content="http://citrushack.com" />
+  <meta property="og:description" content="Citrus Hack is a 36-hour hackathon. A hackathon invites collegiate students to a location to collaborate and innovate. Throughout the 36 hours participants work in teams on a project, attend workshops to learn about new technologies, and network with industry partners."
+  />
+  <meta property="og:image" content="http://citrushack.com/images/logo.png" />
+  <meta property="fb:app_id" content="544219672384014" />
+  <meta property="og:type" content="website" />
+  <meta property="article:author" content="http://citrushack.com" />
+  <meta property="article:publisher" content="https://www.facebook.com/CitrusHack/" />
+  <!-- SEO tags -->
+  <meta name='description' content="http://citrushack.com/images/logo.png" />
+  <meta name='author' content='John Pham' />
+  <meta name='keywords' content='hackathon,riverside,ucr,citrus,highlanders,programming,cs,cutie,hack,inland empire,california,uc,cutie hack,acm,computer,science,entrepreneurship' />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script>
+    $(function() {
+      $('.tooltip-wrapper').tooltip({
+        position: "bottom"
+      });
+    });
+  </script>
+  <style media="screen">
+    #space {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-image: url("images/banner-wallpaper.png");
+    }
+  </style>
+  <script>
+    var canvas;
+    var context;
+    var screenH;
+    var screenW;
+    var stars = [];
+    var fps = 24;
+    var numStars = 200;
+
+    $('document').ready(function() {
+
+      // Calculate the screen size
+      screenH = $(window).height();
+      screenW = $(window).width();
+
+      // Get the canvas
+      canvas = $('#space');
+
+      // Fill out the canvas
+      canvas.attr('height', screenH);
+      canvas.attr('width', screenW);
+      context = canvas[0].getContext('2d');
+
+      // Create all the stars
+      for (var i = 0; i < numStars; i++) {
+        var x = Math.round(Math.random() * screenW);
+        var y = Math.round(Math.random() * screenH);
+        var length = 1 + (Math.random() * 20);
+        // var opacity = Math.random();
+        var opacity = 0;
+
+        // Create a new star and draw
+        var star = new Star(x, y, length, opacity);
+
+        // Add the the stars array
+        stars.push(star);
+      }
+
+      setInterval(animate, 1000 / fps);
+    });
+
+    /**
+     * Animate the canvas
+     */
+    function animate() {
+      context.clearRect(0, 0, screenW, screenH);
+      $.each(stars, function() {
+        this.draw(context);
+      })
+    }
+
+    /**
+     * Star
+     *
+     * @param int x
+     * @param int y
+     * @param int length
+     * @param opacity
+     */
+    function Star(x, y, length, opacity) {
+      this.x = parseInt(x);
+      this.y = parseInt(y);
+      this.length = parseInt(length);
+      this.opacity = opacity;
+      this.factor = 1;
+      this.increment = Math.random() * .03;
+      this.red_o = Math.round((Math.random() * 255) + 1);
+      this.green_o = Math.round((Math.random() * 255) + 1);
+      this.blue_o = Math.round((Math.random() * 255) + 1);
+    }
+
+    /**
+     * Draw a star
+     *
+     * This function draws a star.
+     * You need to give the contaxt as a parameter
+     *
+     * @param context
+     */
+    Star.prototype.draw = function() {
+      context.rotate((Math.PI * 1 / 10));
+
+      // Save the context
+      context.save();
+
+      // move into the middle of the canvas, just to make room
+      context.translate(this.x, this.y);
+
+      // Change the opacity
+      if (this.opacity > 1) {
+        this.factor = -1;
+      } else if (this.opacity <= 0) {
+        this.factor = 1;
+
+        this.x = Math.round(Math.random() * screenW * 2);
+        this.y = Math.round(Math.random() * screenH * 2);
+      }
+
+      this.opacity += this.increment * this.factor;
+
+      context.beginPath()
+      for (var i = 5; i--;) {
+        // context.lineTo(0, this.length);
+        // context.translate(0, this.length);
+        // context.rotate((Math.PI * 2 / 10));
+        // context.lineTo(0, -this.length);
+        // context.translate(0, -this.length);
+        // context.rotate(-(Math.PI * 6 / 10));
+        context.arc(this.length, this.length, this.length * 2, 0, 2 * Math.PI);
+      }
+      context.lineTo(0, this.length);
+      context.closePath();
+
+      context.fillStyle = "rgba(" + this.red_o + "," + this.green_o + "," + this.blue_o + "," + this.opacity + ")";
+      context.shadowBlur = 10;
+      context.shadowColor = "rgba(" + this.red_o + "," + this.green_o + "," + this.blue_o + "," + this.opacity + ")";
+      context.fill();
+
+      context.restore();
+    }
+  </script>
 </head>
 
 <body>
 
-	<!-- Banner -->
-	<section id="banner">
-		<div class="inner">
-			<header>
-				<img src="images/logo.png" class="logo">
-				<h1><strong>Citrus Hack 2017</strong></h1>
-				<br>
-				<h2>October 13th to 15th</h2>
-				<p class="slogan">Southern California's Premier Hackathon at UCR</p>
-				<p class="slogan">Hello traveler, the challenge application for Citrus Hack 2017 is now open!</p>
-			</header>
-			<ul class="actions">
-				<li>
-					<a href="https://docs.google.com/forms/d/e/1FAIpQLSfBb9E2MdCTtWOs534bq9co5y2aKGG-U03ulCrqmdllMc4R5A/viewform?usp=sf_link" class="button">Challenge Application</a>
-				</li>
-				<li>
-					<div class="tooltip-wrapper disabled" data-title="Opening in August 2017">
-						<a class="button disabled" disabled>Normal Application</a>
-					</div>
-				</li>
-			</ul>
-		</div>
-		<div class="stars"></div>
-		<div class="twinkling"></div>
-		<div class="clouds"></div>
-	</section>
+  <!-- Banner -->
+  <section id="banner">
+    <div class="inner">
+      <header>
+        <div id="logo-wrapper">
+          <div class="space-logo">
+            <img src="images/citrushack-logo-space.gif" class="logo">
+            <img src="images/citrushack-logo-space-ring" class="logo-ring">
+          </div>
+        </div>
+        <h1><strong>Citrus Hack 2017</strong></h1>
+        <br>
+        <h2>October 13th to 15th</h2>
+        <p class="slogan">Southern California's Premier Hackathon at UCR</p>
+        <p class="slogan">Hello traveler, the challenge application for Citrus Hack 2017 is now open!</p>
+      </header>
+      <ul class="actions">
+        <li>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfBb9E2MdCTtWOs534bq9co5y2aKGG-U03ulCrqmdllMc4R5A/viewform?usp=sf_link" class="button">Challenge Application</a>
+        </li>
+        <li>
+          <div class="tooltip-wrapper disabled" data-title="Opening in August 2017">
+            <a class="button disabled" disabled>Normal Application</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <canvas id="space"></canvas>
+  </section>
 
-	<section class="wrapper">
-		<div class="inner">
-			<h3>About</h3>
-			<p>Citrus Hack was founded in 2014 by ACM and IEEE student members at the University of California, Riverside. Their goal was to create a place where students can create with the freedom of their creativity. Established by students for students, Citrus
-				Hack has since become one of Southern California’s premier collegiate hackathons. Citrus Hack is a place where students can turn their ideas into the next technological boom.</p>
-			<p>Our mission is to create a collaborative relationship between students and sponsors. The relationship fosters and enables innovations that will revolutionize across industries. Sponsors will be able to promote their brand to a large audience, while
-				allowing students to harness their ability to create and innovate newer ideas. The garages of the dot-com era are now hackathons. Citrus Hack will only be able to establish that relationship with the help of its sponsors.</p>
-			<p>Citrus Hack is a 36-hour hackathon. A hackathon invites collegiate students to a location to collaborate and innovate. Throughout the 36 hours participants work in teams on a project, attend workshops to learn about new technologies, and network with
-				industry partners.</p>
-		</div>
-	</section>
+  <section class="wrapper">
+    <div class="inner">
+      <h3>About</h3>
+      <p>Citrus Hack was founded in 2014 by ACM and IEEE student members at the University of California, Riverside. Their goal was to create a place where students can create with the freedom of their creativity. Established by students for students, Citrus
+        Hack has since become one of Southern California’s premier collegiate hackathons. Citrus Hack is a place where students can turn their ideas into the next technological boom.</p>
+      <p>Our mission is to create a collaborative relationship between students and sponsors. The relationship fosters and enables innovations that will revolutionize across industries. Sponsors will be able to promote their brand to a large audience, while
+        allowing students to harness their ability to create and innovate newer ideas. The garages of the dot-com era are now hackathons. Citrus Hack will only be able to establish that relationship with the help of its sponsors.</p>
+      <p>Citrus Hack is a 36-hour hackathon. A hackathon invites collegiate students to a location to collaborate and innovate. Throughout the 36 hours participants work in teams on a project, attend workshops to learn about new technologies, and network
+        with industry partners.</p>
+    </div>
+  </section>
 
-	<section class="wrapper style1">
-		<div class="inner">
-			<header class="align-center">
-				<h2 class="wrapper-text">Metrics for 2017</h2>
-			</header>
-			<div class="flex flex-3">
-				<div class="col align-center">
-					<h1>600</h1>
-					<p>Hackers</p>
-				</div>
-				<div class="col align-center">
-					<h1>150</h1>
-					<p>Awesome Projects</p>
-				</div>
-				<div class="col align-center">
-					<h1>36</h1>
-					<p>Hours of Hacking</p>
-				</div>
-			</div>
-		</div>
-	</section>
+  <section class="wrapper style1">
+    <div class="inner">
+      <header class="align-center">
+        <h2 class="wrapper-text">Metrics for 2017</h2>
+      </header>
+      <div class="flex flex-3">
+        <div class="col align-center">
+          <h1>600</h1>
+          <p>Hackers</p>
+        </div>
+        <div class="col align-center">
+          <h1>150</h1>
+          <p>Awesome Projects</p>
+        </div>
+        <div class="col align-center">
+          <h1>36</h1>
+          <p>Hours of Hacking</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-	<section class="wrapper">
-		<div class="inner">
-			<div class="flex flex-4">
-				<div class="col align-center">
-					<i class="fa fa-user fa-5x"></i>
-					<h3>Who can attend?</h3>
-					<p class="answer">All undergraduate university students. Recently graduated? You're welcome to attend if you graduated within the past year.</p>
-				</div>
-				<div class="col align-center">
-					<i class="fa fa-briefcase fa-5x"></i>
-					<h3>What do I bring?</h3>
-					<p class="answer">We require all participants to bring their student IDs. Also consider bringing some of the following: a hacking machine, cables for your hacking machine, headphones, pillow, and an extra set of clothes.</p>
-				</div>
-				<div class="col align-center">
-					<i class="fa fa-cutlery fa-5x"></i>
-					<h3>Will there be food?</h3>
-					<p class="answer">Yes! We will be providing meals along with refreshments and snacks throughout the event.</p>
-				</div>
-				<div class="col align-center">
-					<i class="fa fa-money fa-5x"></i>
-					<h3>How much does Citrus Hack cost?</h3>
-					<p class="answer">Citrus Hack is absolutely free to attend!</p>
-				</div>
-				<div class="col align-center">
-					<i class="fa fa-plane fa-5x"></i>
-					<h3>Are there travel reimbursments?</h3>
-					<p class="answer">We currently do not support any form of travel reimbursements; however, we are working towards adding this benefit.</p>
-				</div>
-				<div class="col align-center">
-					<i class="fa fa-terminal fa-5x"></i>
-					<h3>Do I have to be a programmer?</h3>
-					<p class="answer">Absolutely not! It doesn’t matter if you are a designer, a writer, or a chemistry major. There is a place for you here. There will be a team formation session at the beginning of the event to help form teams.</p>
-				</div>
-				<div class="col align-center">
-					<i class="fa fa-users fa-5x"></i>
-					<h3>Do I need a team? How large can my team be?</h3>
-					<p class="answer">We recommend working in a team. There will be a team formation event before hacking begins. Team sizes are capped at 4 members.</p>
-				</div>
-				<div class="col align-center">
-					<i class="fa fa-comment fa-5x"></i>
-					<h3>Any other questions?</h3>
-					<p class="answer">Contact us!</p>
-				</div>
-			</div>
-		</div>
-	</section>
+  <section class="wrapper">
+    <div class="inner">
+      <div class="flex flex-4">
+        <div class="col align-center">
+          <i class="fa fa-user fa-5x"></i>
+          <h3>Who can attend?</h3>
+          <p class="answer">All undergraduate university students. Recently graduated? You're welcome to attend if you graduated within the past year.</p>
+        </div>
+        <div class="col align-center">
+          <i class="fa fa-briefcase fa-5x"></i>
+          <h3>What do I bring?</h3>
+          <p class="answer">We require all participants to bring their student IDs. Also consider bringing some of the following: a hacking machine, cables for your hacking machine, headphones, pillow, and an extra set of clothes.</p>
+        </div>
+        <div class="col align-center">
+          <i class="fa fa-cutlery fa-5x"></i>
+          <h3>Will there be food?</h3>
+          <p class="answer">Yes! We will be providing meals along with refreshments and snacks throughout the event.</p>
+        </div>
+        <div class="col align-center">
+          <i class="fa fa-money fa-5x"></i>
+          <h3>How much does Citrus Hack cost?</h3>
+          <p class="answer">Citrus Hack is absolutely free to attend!</p>
+        </div>
+        <div class="col align-center">
+          <i class="fa fa-plane fa-5x"></i>
+          <h3>Are there travel reimbursments?</h3>
+          <p class="answer">We currently do not support any form of travel reimbursements; however, we are working towards adding this benefit.</p>
+        </div>
+        <div class="col align-center">
+          <i class="fa fa-terminal fa-5x"></i>
+          <h3>Do I have to be a programmer?</h3>
+          <p class="answer">Absolutely not! It doesn’t matter if you are a designer, a writer, or a chemistry major. There is a place for you here. There will be a team formation session at the beginning of the event to help form teams.</p>
+        </div>
+        <div class="col align-center">
+          <i class="fa fa-users fa-5x"></i>
+          <h3>Do I need a team? How large can my team be?</h3>
+          <p class="answer">We recommend working in a team. There will be a team formation event before hacking begins. Team sizes are capped at 4 members.</p>
+        </div>
+        <div class="col align-center">
+          <i class="fa fa-comment fa-5x"></i>
+          <h3>Any other questions?</h3>
+          <p class="answer">Contact us!</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-	<section class="wrapper style1">
-		<div class="inner">
-			<header class="align-center">
-				<h1>2017 Sponsors</h1>
-				<h5>Interested in being a sponsor? Contact us at <a href="mailto:contact@citrushack.com">contact@citrushack.com</a> or check out our <a href="docs/citrus_hack_sponsorship_2017.pdf">sponsorship package</a>. Check out <a href="http://2016.citrushack.com/#/main">Citrus Hack 2016</a>!</h5>
-			</header>
-			<div class="flex flex-2">
-				<div class="col align-center">
-					<a href="http://jpl.nasa.gov"><img src="images/jpl.png" width="75%"></a>
-				</div>
-				<div class="col align-center">
-					<a href="http://www.engr.ucr.edu/"><img src="images/bcoe.png" width="75%"></a>
-				</div>
-			</div>
-			<br>
-			<div class="flex flex-2">
-				<div class="col align-center">
-					<a href="https://www.unclechuangsbakery.com/"><img src="images/chuangs.png" width="60%"></a>
-				</div>
-				<div class="col align-center">
-					<a href="https://www.stickermule.com/uses/logo-stickers"><img src="images/sticker_mule.png" width="60%"></a>
-				</div>
-			</div>
-			<br>
-			<div class="flex flex-2">
-				<div class="col align-center">
-					<a href="http://theyesman.org"><img src="/images/yesman.png" width="30%"></a>
-				</div>
-				<div class="col align-center">
-					<a href="http://universityinnovation.org"><img src="/images/uif.png" width="30%"></a>
-				</div>
-			</div>
-			<br>
-			<div class="flex flex-2">
-				<div class="col align-center">
-					<a href="http://www.ee.ucr.edu/"><img src="/images/bcoe_ee.png" width="30%"></a>
-				</div>
-				<div class="col align-center">
-					<a href="http://www1.cs.ucr.edu/index.php"><img src="/images/bcoe_cs.png" width="30%"></a>
-				</div>
-			</div>
-			<br>
-			<div class="flex flex-2">
-				<div class="col align-center">
-					<a href="http://chancellor.ucr.edu"><img src="/images/chancellor.png" width="30%"></a>
-				</div>
-				<div class="col align-center">
-					<a href="https://www.starbucks.com/store-locator/store/11308/university-iowa-riverside-1201-university-avenue-university-village-riverside"><img src="/images/starbucks.png" width="30%"></a>
-				</div>
-			</div>
-			<br>
-			<div class="flex flex-2">
-				<div class="col align-center">
-					<a href="https://www.riversideca.gov/"><img src="/images/riverside.jpg" width="30%"></a>
-				</div>
-				<div class="col align-center">
-					<a href="https://www.twilio.com/"><img src="/images/twilio.png" width="50%"></a>
-				</div>
-			</div>
-			<header class="align-center">
-				<h1>Organizers</h1>
-			</header>
-			<div class="flex flex-2">
-				<div class="col align-center">
-					<a href="http://acmucr.org"><img src="/images/acm.png" width="30%"></a>
-				</div>
-				<div class="col align-center">
-					<a href="http://ieee.ee.ucr.edu/"><img src="/images/ieee.png" width="30%"></a>
-				</div>
-			</div>
-		</div>
-	</section>
+  <section class="wrapper style1">
+    <div class="inner">
+      <header class="align-center">
+        <h1>2017 Sponsors</h1>
+        <h5>Interested in being a sponsor? Contact us at <a href="mailto:contact@citrushack.com">contact@citrushack.com</a> or check out our <a href="docs/citrus_hack_sponsorship_2017.pdf">sponsorship package</a>. Check out <a href="http://2016.citrushack.com/#/main">Citrus Hack 2016</a>!</h5>
+      </header>
+      <div class="flex flex-2">
+        <div class="col align-center">
+          <a href="http://jpl.nasa.gov"><img src="images/jpl.png" width="75%"></a>
+        </div>
+        <div class="col align-center">
+          <a href="http://www.engr.ucr.edu/"><img src="images/bcoe.png" width="75%"></a>
+        </div>
+      </div>
+      <br>
+      <div class="flex flex-2">
+        <div class="col align-center">
+          <a href="https://www.unclechuangsbakery.com/"><img src="images/chuangs.png" width="60%"></a>
+        </div>
+        <div class="col align-center">
+          <a href="https://www.stickermule.com/uses/logo-stickers"><img src="images/sticker_mule.png" width="60%"></a>
+        </div>
+      </div>
+      <br>
+      <div class="flex flex-2">
+        <div class="col align-center">
+          <a href="http://theyesman.org"><img src="/images/yesman.png" width="30%"></a>
+        </div>
+        <div class="col align-center">
+          <a href="http://universityinnovation.org"><img src="/images/uif.png" width="30%"></a>
+        </div>
+      </div>
+      <br>
+      <div class="flex flex-2">
+        <div class="col align-center">
+          <a href="http://www.ee.ucr.edu/"><img src="/images/bcoe_ee.png" width="30%"></a>
+        </div>
+        <div class="col align-center">
+          <a href="http://www1.cs.ucr.edu/index.php"><img src="/images/bcoe_cs.png" width="30%"></a>
+        </div>
+      </div>
+      <br>
+      <div class="flex flex-2">
+        <div class="col align-center">
+          <a href="http://chancellor.ucr.edu"><img src="/images/chancellor.png" width="30%"></a>
+        </div>
+        <div class="col align-center">
+          <a href="https://www.starbucks.com/store-locator/store/11308/university-iowa-riverside-1201-university-avenue-university-village-riverside"><img src="/images/starbucks.png" width="30%"></a>
+        </div>
+      </div>
+      <br>
+      <div class="flex flex-2">
+        <div class="col align-center">
+          <a href="https://www.riversideca.gov/"><img src="/images/riverside.jpg" width="30%"></a>
+        </div>
+        <div class="col align-center">
+          <a href="https://www.twilio.com/"><img src="/images/twilio.png" width="50%"></a>
+        </div>
+      </div>
+      <header class="align-center">
+        <h1>Organizers</h1>
+      </header>
+      <div class="flex flex-2">
+        <div class="col align-center">
+          <a href="http://acmucr.org"><img src="/images/acm.png" width="30%"></a>
+        </div>
+        <div class="col align-center">
+          <a href="http://ieee.ee.ucr.edu/"><img src="/images/ieee.png" width="30%"></a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-	<section class="wrapper style2">
-		<div class="inner">
-			<header class="align-center">
-				<h2 class="wrapper-text" id="team-title">Meet the Team</h2>
-				<br />
-				<button onclick="javascript:showDiv();" id="team-button">Show</button>
-			</header>
-			<div id="team-display">
-				<div class="flex flex-2">
-					<div class="col align-center">
-						<div class="image-box">
-							<div class="image round">
-								<a href="mailto:jacob@citrushack.com"><img class="profile-picture" src="images/jacob.jpg" /></a>
-							</div>
-						</div>
-						<h3>Jacob Poole</h3>
-						<p>Co-Director</p>
-					</div>
+  <section class="wrapper style2">
+    <div class="inner">
+      <header class="align-center">
+        <h2 class="wrapper-text" id="team-title">Meet the Team</h2>
+        <br />
+        <button onclick="javascript:showDiv();" id="team-button">Show</button>
+      </header>
+      <div id="team-display">
+        <div class="flex flex-2">
+          <div class="col align-center">
+            <div class="image-box">
+              <div class="image round">
+                <a href="mailto:jacob@citrushack.com"><img class="profile-picture" src="images/jacob.jpg" /></a>
+              </div>
+            </div>
+            <h3>Jacob Poole</h3>
+            <p>Co-Director</p>
+          </div>
 
-					<div class="col align-center">
-						<div class="image-box">
-							<div class="image round">
-								<a href="mailto:john@citrushack.com"><img class="profile-picture" src="images/john.jpg" /></a>
-							</div>
-						</div>
-						<h3>John Pham</h3>
-						<p>Co-Director</p>
-					</div>
-				</div>
+          <div class="col align-center">
+            <div class="image-box">
+              <div class="image round">
+                <a href="mailto:john@citrushack.com"><img class="profile-picture" src="images/john.jpg" /></a>
+              </div>
+            </div>
+            <h3>John Pham</h3>
+            <p>Co-Director</p>
+          </div>
+        </div>
 
-				<div class="flex flex-4">
-					<div class="col align-center">
-						<div class="image-box">
-							<div class="image round">
-								<a href="mailto:patrick@citrushack.com"><img class="profile-picture" src="images/patrick.jpg" /></a>
-							</div>
-						</div>
-						<h3>Patrick Le</h3>
-						<p>Sponsorship</p>
-					</div>
+        <div class="flex flex-4">
+          <div class="col align-center">
+            <div class="image-box">
+              <div class="image round">
+                <a href="mailto:patrick@citrushack.com"><img class="profile-picture" src="images/patrick.jpg" /></a>
+              </div>
+            </div>
+            <h3>Patrick Le</h3>
+            <p>Sponsorship</p>
+          </div>
 
-					<div class="col align-center">
-						<div class="image-box">
-							<div class="image round">
-								<a href="mailto:ajay@citrushack.com"><img class="profile-picture" src="images/ajay.jpg" /></a>
-							</div>
-						</div>
-						<h3>Ajay Raj</h3>
-						<p>Sponsorship</p>
-					</div>
-					<div class="col align-center">
-						<div class="image-box">
-							<div class="image round">
-								<a href="mailto:mario@citrushack.com"><img class="profile-picture" src="images/mario.jpg" /></a>
-							</div>
-						</div>
-						<h3>Mario Salazar</h3>
-						<p>Sponsorship</p>
-					</div>
-					<div class="col align-center">
-						<div class="image-box">
-							<div class="image round">
-								<a href="mailto:haasith@citrushack.com"><img class="profile-picture" src="images/haasith.jpg" /></a>
-							</div>
-						</div>
-						<h3>Haasith Sanka</h3>
-						<p>Sponsorship</p>
-					</div>
-				</div>
+          <div class="col align-center">
+            <div class="image-box">
+              <div class="image round">
+                <a href="mailto:ajay@citrushack.com"><img class="profile-picture" src="images/ajay.jpg" /></a>
+              </div>
+            </div>
+            <h3>Ajay Raj</h3>
+            <p>Sponsorship</p>
+          </div>
+          <div class="col align-center">
+            <div class="image-box">
+              <div class="image round">
+                <a href="mailto:mario@citrushack.com"><img class="profile-picture" src="images/mario.jpg" /></a>
+              </div>
+            </div>
+            <h3>Mario Salazar</h3>
+            <p>Sponsorship</p>
+          </div>
+          <div class="col align-center">
+            <div class="image-box">
+              <div class="image round">
+                <a href="mailto:haasith@citrushack.com"><img class="profile-picture" src="images/haasith.jpg" /></a>
+              </div>
+            </div>
+            <h3>Haasith Sanka</h3>
+            <p>Sponsorship</p>
+          </div>
+        </div>
 
-				<div class="flex flex-4">
-					<div class="col align-center">
-						<div class="image-box">
-							<div class="image round">
-								<a href="mailto:aaroh@citrushack.com"><img class="profile-picture" src="images/aaroh.jpg" /></a>
-							</div>
-						</div>
-						<h3>Aaroh Mankad</h3>
-						<p>Operations</p>
-					</div>
+        <div class="flex flex-4">
+          <div class="col align-center">
+            <div class="image-box">
+              <div class="image round">
+                <a href="mailto:aaroh@citrushack.com"><img class="profile-picture" src="images/aaroh.jpg" /></a>
+              </div>
+            </div>
+            <h3>Aaroh Mankad</h3>
+            <p>Operations</p>
+          </div>
 
-					<div class="col align-center">
-						<div class="image-box">
-							<div class="image round">
-								<a href="mailto:audrey@citrushack.com"><img class="profile-picture" src="images/audrey.jpg" /></a>
-							</div>
-						</div>
-						<h3>Audrey Der</h3>
-						<p>Operations</p>
-					</div>
+          <div class="col align-center">
+            <div class="image-box">
+              <div class="image round">
+                <a href="mailto:audrey@citrushack.com"><img class="profile-picture" src="images/audrey.jpg" /></a>
+              </div>
+            </div>
+            <h3>Audrey Der</h3>
+            <p>Operations</p>
+          </div>
 
-					<div class="col align-center">
-						<div class="image-box">
-							<div class="image round">
-								<a href="mailto:nancy@citrushack.com"><img class="profile-picture" src="images/nancy.jpg" /></a>
-							</div>
-						</div>
-						<h3>Nancy Gao</h3>
-						<p>Marketing</p>
-					</div>
+          <div class="col align-center">
+            <div class="image-box">
+              <div class="image round">
+                <a href="mailto:nancy@citrushack.com"><img class="profile-picture" src="images/nancy.jpg" /></a>
+              </div>
+            </div>
+            <h3>Nancy Gao</h3>
+            <p>Marketing</p>
+          </div>
 
-					<div class="col align-center">
-						<div class="image-box">
-							<div class="image round">
-								<a href="mailto:yosuke@citrushack.com"><img class="profile-picture" src="images/jj.jpg" /></a>
-							</div>
-						</div>
-						<h3>Yosuke Inagaki</h3>
-						<p>Marketing</p>
-					</div>
-				</div>
-				<br>
-				<center><a href="mailto:contact@citrushack.com?subject=Joining%20The%20Citrus%20Team" class="button">Join the Team!</a></center>
-			</div>
-		</div>
-	</section>
-	<!-- Footer -->
-	<footer id="footer">
-		<div class="copyright">
-			<ul class="icons">
-				<li><a href="https://www.facebook.com/CitrusHack/" class="icon fa-facebook"><span class="label">Facebook</span></a>@CitrusHack</li>
-				<li><a href="mailto:contact@citrushack.com" class="icon fa-envelope-o"><span class="label">Instagram</span></a>contact@CitrusHack.com</li>
-				<li><a href="https://www.instagram.com/citrushack_ucr/" class="icon fa-instagram"><span class="label">Instagram</span></a>@CitrusHack_UCR</li>
-			</ul>
-			<div class="align-center">
-				<p>Made with <i class="fa fa-heart"></i> in Riverside, CA<br>Site by <a href="http://johnpham.net">John Pham</a><br>&copy; 2017 Citrus Hack</p>
-			</div>
-		</div>
-	</footer>
+          <div class="col align-center">
+            <div class="image-box">
+              <div class="image round">
+                <a href="mailto:yosuke@citrushack.com"><img class="profile-picture" src="images/jj.jpg" /></a>
+              </div>
+            </div>
+            <h3>Yosuke Inagaki</h3>
+            <p>Marketing</p>
+          </div>
+        </div>
+        <br>
+        <center><a href="mailto:contact@citrushack.com?subject=Joining%20The%20Citrus%20Team" class="button">Join the Team!</a></center>
+      </div>
+    </div>
+  </section>
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="copyright">
+      <ul class="icons">
+        <li><a href="https://www.facebook.com/CitrusHack/" class="icon fa-facebook"><span class="label">Facebook</span></a>@CitrusHack</li>
+        <li><a href="mailto:contact@citrushack.com" class="icon fa-envelope-o"><span class="label">Instagram</span></a>contact@CitrusHack.com</li>
+        <li><a href="https://www.instagram.com/citrushack_ucr/" class="icon fa-instagram"><span class="label">Instagram</span></a>@CitrusHack_UCR</li>
+      </ul>
+      <div class="align-center">
+        <p>Made with <i class="fa fa-heart"></i> in Riverside, CA<br>Site by <a href="http://johnpham.net">John Pham</a><br>&copy; 2017 Citrus Hack</p>
+      </div>
+    </div>
+  </footer>
 
-	<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/jquery.scrollex.min.js"></script>
-	<script src="assets/js/skel.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <!-- Scripts -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/jquery.scrolly.min.js"></script>
+  <script src="assets/js/jquery.scrollex.min.js"></script>
+  <script src="assets/js/skel.min.js"></script>
+  <script src="assets/js/util.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 </body>
 
