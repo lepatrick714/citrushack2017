@@ -1588,12 +1588,12 @@ input[type="submit"].disabled, input[type="submit"]:disabled, input[type="reset"
 }
 
 input[type="submit"], input[type="reset"], input[type="button"], button, .button {
-    background-color: #f08404;
+    background-color: #ee8322;
     color: #fff !important;
 }
 
 input[type="submit"]:hover, input[type="reset"]:hover, input[type="button"]:hover, button:hover, .button:hover {
-    background-color: #ffaa45;
+    background-color: #f09a21;
 }
 
 input[type="submit"]:active, input[type="reset"]:active, input[type="button"]:active, button:active, .button:active {
@@ -2454,7 +2454,7 @@ table.alt tbody tr td {
 }
 
 .wrapper.style1 {
-    background-color: #212121;
+    background-color: #183642;
     color: #FFF;
 }
 
@@ -2635,7 +2635,7 @@ table.alt tbody tr td {
 }
 
 .wrapper.style2 {
-    background-color: #000d1e;
+    background-color: #313d5a;
     color: #FFF;
 }
 
