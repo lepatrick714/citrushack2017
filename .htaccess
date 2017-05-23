@@ -16,7 +16,7 @@ SetOutputFilter DEFLATE
 
 <ifModule mod_headers.c>
 	# 1 Month for most static assets
-	<FilesMatch ".(css|jpg|jpeg|png|gif|js|ico)$">
+	<FilesMatch ".(css|jpg|jpeg|png|gif|js|ico|stardust)$">
 		Header set Cache-Control "max-age=2592000, public"
 	</FilesMatch>
 </ifModule>
