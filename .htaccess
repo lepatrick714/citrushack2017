@@ -14,7 +14,9 @@ AddOutputFilterByType DEFLATE application/x-javascript
 SetOutputFilter DEFLATE
 </files>
 
-# 1 Month for most static assets
-<FilesMatch ".(css|jpg|jpeg|png|gif|js|ico)$">
-# Header set Cache-Control "max-age=2592000, public"
-</FilesMatch>
+<ifModule mod_headers.c>
+	# 1 Month for most static assets
+	<FilesMatch ".(css|jpg|jpeg|png|gif|js|ico)$">
+		Header set Cache-Control "max-age=2592000, public"
+	</FilesMatch>
+</ifModule>
