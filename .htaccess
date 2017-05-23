@@ -16,5 +16,5 @@ SetOutputFilter DEFLATE
 
 # 1 Month for most static assets
 <FilesMatch ".(css|jpg|jpeg|png|gif|js|ico)$">
-Header set Cache-Control "max-age=2592000, public"
+# Header set Cache-Control "max-age=2592000, public"
 </FilesMatch>
