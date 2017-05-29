@@ -21,11 +21,8 @@ body {
 ol, ul {
     list-style: none;
 }
-a img {
-    background-color: transparent;
-}
 a img:hover {
-    background-color: #f08404;
+    opacity: 0.5;
 }
 
 blockquote, q {
