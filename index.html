@@ -246,7 +246,9 @@
                 screenW,
                 stars = [],
                 fps = 18;
-            var numStars;
+            var
+                numStars,
+                is_mobile = false;
 
             window.mobilecheck = function() {
                   var check = false;
@@ -256,6 +258,8 @@
 
             if (window.mobilecheck()) {
                 numStars = 0;
+                is_mobile = true;
+
             } else {
                 numStars = 200;
             }
@@ -287,6 +291,10 @@
 
                     // Add the the stars array
                     stars.push(star);
+                }
+
+                if (is_mobile) {
+                   return;
                 }
 
                 setInterval(animate, 1000 / fps);
