@@ -21,8 +21,15 @@ body {
 ol, ul {
     list-style: none;
 }
+
+a img {
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
 a img:hover {
-    opacity: 0.5;
+    /*opacity: 0.5;*/
+    transform: scale(1.25, 1.25);
 }
 
 blockquote, q {
